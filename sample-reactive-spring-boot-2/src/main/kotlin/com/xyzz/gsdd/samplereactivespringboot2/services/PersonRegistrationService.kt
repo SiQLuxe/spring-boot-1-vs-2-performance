@@ -11,7 +11,8 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 
 @Service
-class PersonRegistrationService(@Value("\${registration.service}") private val registrationServiceBaseUrl: String) {
+class PersonRegistrationService(
+        @Value("\${registration.service}") private val registrationServiceBaseUrl: String) {
 
     private val webClient = WebClient.builder().baseUrl(registrationServiceBaseUrl).build()
 
@@ -21,6 +22,15 @@ class PersonRegistrationService(@Value("\${registration.service}") private val r
                 .header(CONTENT_TYPE, APPLICATION_JSON_UTF8_VALUE)
                 .header(ACCEPT, APPLICATION_JSON_UTF8_VALUE)
                 .body(fromObject(person))
+                .exchange()
+                .flatMap { it.bodyToMono(Person::class.java) }
+    }
+
+    fun personGet(): Mono<Person>{
+        return webClient.get()
+                .uri("/register")
+                .header(CONTENT_TYPE, APPLICATION_JSON_UTF8_VALUE)
+                .header(ACCEPT, APPLICATION_JSON_UTF8_VALUE)
                 .exchange()
                 .flatMap { it.bodyToMono(Person::class.java) }
     }

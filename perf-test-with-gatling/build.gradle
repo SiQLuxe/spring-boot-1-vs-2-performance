@@ -1,3 +1,8 @@
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter" }
+}
+
 apply plugin: 'scala'
 
 repositories {
@@ -6,6 +11,7 @@ repositories {
 
 group 'com.xyzz.gsdd'
 version '1.0-SNAPSHOT'
+
 dependencies {
     compile 'org.scala-lang:scala-library:2.12.4'
     compile 'io.gatling:gatling-app:2.3.0'

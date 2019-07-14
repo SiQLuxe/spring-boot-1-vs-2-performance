@@ -25,6 +25,18 @@
 		<kotlin.version>1.2.20</kotlin.version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>aliyunmaven</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+
+		<repository>
+			<id>aliyunmaven-j</id>
+			<url>http://maven.aliyun.com/nexus/content/repositories/jcenter</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
